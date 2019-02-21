@@ -1,0 +1,46 @@
+*&---------------------------------------------------------------------*
+*& Report ZUSER_HELLO
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZUSER_HELLO.
+
+PARAMETERS:
+  pa_int1 TYPE i,
+  pa_int2 TYPE i,
+  gv_res  TYPE i,
+  gv_res1 TYPE i.
+
+WRITE 'Before the function call :'.
+NEW-LINE.
+WRITE: pa_int1,pa_int2,gv_res,gv_res1.
+NEW-LINE.
+PERFORM cal_percentage
+  USING
+        pa_int1
+        pa_int2
+  CHANGING
+        gv_res
+        gv_res1.
+NEW-LINE.
+WRITE 'After the function call :'.
+NEW-LINE.
+WRITE: pa_int1,pa_int2,gv_res,gv_res1.
+
+
+FORM cal_percentage USING
+                          VALUE(pv_act1) TYPE i
+                          VALUE(pv_act2) TYPE i
+                    CHANGING
+                          VALUE(cv_result) TYPE i
+                          cv_res TYPE i.
+
+  pv_act1 = pv_act1 + 1.
+  pv_act2 = pv_act2 + 1.
+  cv_result = cv_result + 1.
+  cv_res = cv_res + 1.
+  WRITE 'In the function call : '.
+  NEW-LINE.
+  WRITE : pv_act1,pv_act2,cv_result,cv_res.
+  NEW-LINE.
+ENDFORM.
